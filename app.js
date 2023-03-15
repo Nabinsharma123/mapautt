@@ -95,7 +95,7 @@ app.post('/signin', async (req, res) => {
     }
 });
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || 8000, () => {
     console.log("server is running at port no 8000");
 });
 module.exports = router;
