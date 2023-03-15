@@ -34,14 +34,13 @@ const userSchema = new mongoose.Schema({
 //we are hashing the password
 
 userSchema.pre('save', async function (next) {
-
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 12);
     }
     next();
 });
 
-// we are gnarating token
+//we are gnarating the token
 userSchema.methods.generateAuthToken = async function () {
     try {
         let token = jwt.sign({ _id: this._id, email: this.email, name: this.name, address: this.address, }, process.env.SECRET_KEY);
